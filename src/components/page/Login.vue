@@ -24,24 +24,20 @@
 
 <script>
     export default {
-         data() {
-                return this.tableData.filter((d) => {
-                    let is_del = false;
-                    for (let i = 0; i < this.del_list.length; i++) {
-                        if (d.name === this.del_list[i].name) {
-                            is_del = true;
-                            break;
-                        }
-                    }
-                    if (!is_del) {
-                        if (d.address.indexOf(this.select_cate) > -1 &&
-                            (d.name.indexOf(this.select_word) > -1 ||
-                                d.address.indexOf(this.select_word) > -1)
-                        ) {
-                            return d;
-                        }
-                    }
-                })
+        data: function(){
+            return {
+                ruleForm: {
+                    number: '17401210133',
+                    password: '123456'
+                },
+                rules: {
+                    number: [
+                        { required: true, message: '请输入用户名', trigger: 'blur' }
+                    ],
+                    password: [
+                        { required: true, message: '请输入密码', trigger: 'blur' }
+                    ]
+                }
             }
         },
         methods: {
@@ -60,11 +56,7 @@
                             else{
                                 alert("用户名密码错误")
                             }
-                        })
-                     
-                        
-                     
- 
+                        });
                     } else {
                         console.log('error submit!!');
                         return false;
